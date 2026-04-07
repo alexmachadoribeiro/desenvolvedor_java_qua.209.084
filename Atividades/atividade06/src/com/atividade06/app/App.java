@@ -1,6 +1,34 @@
+package com.atividade06.app;
+
+import java.util.Scanner;
+
+import com.atividade06.models.Carro;
+import com.atividade06.models.Caminhao;
+import com.atividade06.models.Moto;
+import com.atividade06.models.Onibus;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        Scanner sc = new Scanner(System.in);
+
+        String tipoVeiculo;
+
+        System.out.println("Informe qual o tipo de veículo que deseja cadastrar:");
+        System.out.println("A - Moto");
+        System.out.println("B - Carro");
+        System.out.println("C - Caminhão");
+        System.out.println("D - Ônibus");
+        tipoVeiculo = sc.nextLine();
+
+        switch (tipoVeiculo) {
+            case "A":
+                Moto moto = new Moto(null, null, null, null, null, "A", null);
+                // TODO: informar dados da moto
+                break;
+            // TODO: fazer os cases dos outros veículos
+        }
+
+        sc.close();
     }
 }
 // TODO: atividade 06
