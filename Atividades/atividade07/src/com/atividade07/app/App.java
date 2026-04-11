@@ -52,89 +52,92 @@ public class App {
             default:
                 System.out.println("Pessoa 404");
 
-            // se pessoaTipo for pessoa física ou pessoa jurídica
-            if ("PF".equals(pessoaTipo) || "PJ".equals(pessoaTipo)) {
-                do {
-                    // menu
-                    System.out.println("---- Opções do Roubank ----");
-                    System.out.println("1 - Consultar dados da conta");
-                    System.out.println("2 - Fazer depósito");
-                    System.out.println("3 - Fazer saque");
-                    System.out.println("4 - Sair do programa");
-                    opcao = sc.nextLine();
+        } // FIXME: Switch case termina aqui
 
-                    switch (opcao) {
-                        case "1":
-                            if ("PF".equals(pessoaTipo)) {
-                                ccpf.exibirDados();
+        // se pessoaTipo for pessoa física ou pessoa jurídica
+        if ("PF".equals(pessoaTipo) || "PJ".equals(pessoaTipo)) {
+            do {
+                // menu
+                System.out.println("---- Opções do Roubank ----");
+                System.out.println("1 - Consultar dados da conta");
+                System.out.println("2 - Fazer depósito");
+                System.out.println("3 - Fazer saque");
+                System.out.println("4 - Sair do programa");
+                opcao = sc.nextLine();
+
+                switch (opcao) {
+                    case "1":
+                        if ("PF".equals(pessoaTipo)) {
+                            ccpf.exibirDados();
+                        }
+                        else {
+                            ccpj.exibirDados();
+                        }
+                        break;
+                    case "2":
+                        System.out.println("Informe o valor do depósito em R$:");
+                        valor = sc.nextDouble();
+
+                        sc.nextLine();
+                        
+                        if ("PF".equals(pessoaTipo)) {
+                            if (valor > 0) {
+                                System.out.println("Valor depositado com sucesso.");
+                                System.out.println("Saldo atual: R$ " + ccpf.fazerDeposito(valor));
                             }
                             else {
-                                ccpj.exibirDados();
+                                System.out.println("Valor inválido.");
                             }
-                            break;
-                        case "2":
-                            System.out.println("Informe o valor do depósito em R$:");
-                            valor = sc.nextDouble();
+                        }
+                        else {
+                            if (valor > 0) {
+                                System.out.println("Valor depositado com sucesso.");
+                                System.out.println("Saldo atual: R$ " + ccpj.fazerDeposito(valor));
+                            }
+                        }
+                        break;
+                    case "3":
+                        System.out.println("Informe o valor do saque em R$");
+                        valor = sc.nextDouble();
 
-                            sc.nextLine();
-                            
-                            if ("PF".equals(pessoaTipo)) {
-                                if (valor > 0) {
-                                    System.out.println("Valor depositado com sucesso.");
-                                    System.out.println("Saldo atual: R$ " + ccpf.fazerDeposito(valor));
-                                }
-                                else {
-                                    System.out.println("Valor inválido.");
-                                }
+                        sc.nextLine();
+
+                        if ("PF".equals(pessoaTipo)) {
+                            if (valor > 0 && valor <= ccpf.getSaldo()) {
+                                System.out.println("Saque efetuado com sucesso.");
+                                System.out.println("Saldo atual: R$ " + ccpf.fazerSaque(valor));
                             }
                             else {
-                                if (valor > 0) {
-                                    System.out.println("Valor depositado com sucesso.");
-                                    System.out.println("Saldo atual: R$ " + ccpj.fazerDeposito(valor));
-                                }
+                                System.out.println("Valor do saque inválido.");
                             }
-                            break;
-                        case "3":
-                            System.out.println("Informe o valor do saque em R$");
-                            valor = sc.nextDouble();
-
-                            sc.nextLine();
-
-                            if ("PF".equals(pessoaTipo)) {
-                                if (valor > 0 && valor <= ccpf.getSaldo()) {
-                                    System.out.println("Saque efetuado com sucesso.");
-                                    System.out.println("Saldo atual: R$ " + ccpf.fazerSaque(valor));
-                                }
-                                else {
-                                    System.out.println("Valor do saque inválido.");
-                                }
+                        }
+                        else {
+                            if (valor > 0 && valor <= ccpj.getSaldo()) {
+                                System.out.println("Saque efetuado com sucesso.");
+                                System.out.println("Saldo atual: R$ " + ccpj.fazerSaque(valor));
                             }
                             else {
-                                if (valor > 0 && valor <= ccpj.getSaldo()) {
-                                    System.out.println("Saque efetuado com sucesso.");
-                                    System.out.println("Saldo atual: R$ " + ccpj.fazerSaque(valor));
-                                }
-                                else {
-                                    System.out.println("Valor do saque inválido.");
-                                }
+                                System.out.println("Valor do saque inválido.");
                             }
-                            break;
-                        case "4":
-                            System.out.println("Programa encerrado.");
-                            System.out.println("Volte sempre.");
-                            break;
-                        default:
-                            System.out.println("Opção inválida.");
-                    }
-                } while (!"4".equals(opcao));
-            }
-            else {
-                System.out.println("Não foi possível cadastrar novo titular.");
-                System.out.println("Programa encerrado.");
-            }
+                        }
+                        break;
+                    case "4":
+                        System.out.println("Programa encerrado.");
+                        System.out.println("Volte sempre.");
+                        break;
+                    default:
+                        System.out.println("Opção inválida.");
+                }
+            } while (!"4".equals(opcao));
+        }
+        else {
+            System.out.println("Não foi possível cadastrar novo titular.");
+            System.out.println("Programa encerrado.");
         }
 
         sc.close();
+
+        // FIXME: o programa termina com duas chaves no final, e não 3
     }
 }
 // TODO: atividade 07
