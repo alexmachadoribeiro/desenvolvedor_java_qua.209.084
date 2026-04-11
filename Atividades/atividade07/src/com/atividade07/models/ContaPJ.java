@@ -16,6 +16,17 @@ public class ContaPJ extends Conta {
         this.pj = pj;
     }
 
-    // TODO: polimorfismo
+    public void exibirDados() {
+        System.out.println("Razão Social: " + this.pj.getRazaoSocial());
+        System.out.println("Nome fantasia: " + this.pj.getNomeFantasia());
+        System.out.println("CNPJ: " + this.pj.getCnpj());
+        System.out.println("E-mail: " + this.pj.getEmail());
+        super.exibirDados();
+    }
+
+    public double fazerSaque(double valor) {
+        this.setSaldo(this.getSaldo()-valor-(this.getSaldo()-0.01/100));
+        return this.getSaldo();
+    }
 
 }
