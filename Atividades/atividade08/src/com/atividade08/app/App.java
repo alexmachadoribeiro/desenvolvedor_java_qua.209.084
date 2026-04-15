@@ -1,7 +1,20 @@
 package com.atividade08.app;
+
+import javax.swing.JOptionPane;
+
+import com.atividade08.models.Usuario;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        // instância do usuário
+        Usuario usuario = new Usuario(null, 0);
+
+        // entrada de dados
+        usuario.setNome(JOptionPane.showInputDialog("Informe o nome:"));
+        usuario.setIdade(Integer.parseInt(JOptionPane.showInputDialog("Informe a idade:")));
+
+        // saída de dados
+        JOptionPane.showMessageDialog(null, usuario.getNome() + usuario.verificarIdade());
     }
 }
 // TODO: atividade 08
