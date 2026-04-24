@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário CSS</title>
+
+    <!-- css interno -->
+    <style>
+        div {
+            margin-right:5%;
+            margin-top: 50px;
+            float: left;
+        }
+
+        label, input, select {
+            margin: 20px 0px;
+        }
+
+        input, select {
+            border: 0px;
+            border-bottom: 2px solid black;
+            outline: none;
+            transition: 0.3s ease;
+            width: 100%;
+        }
+
+        input:focus, select:focus {
+            border-bottom: 2px solid #ff0000;
+            transition: 0.3s ease;
+        }
+
+        select {
+            background-color: white;
+        }
+
+        button {
+            width: 200px;
+            height: 50px;
+            font-size: 25px;
+            font-weight: bolder;
+            border-radius: 15px;
+            color: white;
+            background-color: black;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background-color: green;
+            transition: 0.3s ease;
+        }
+    </style>
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif; margin: 0px auto;">
+    <header style="background-color:black;color:white;display: flex;justify-content: center;">
+        <h1>Formulário com CSS</h1>
+    </header>
+    <form style="margin:50px 100px; max-width: 100%;">
+        <div style="width: 20%;">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+        <div style="width: 70%;">
+            <label for="sobrenome">Sobrenome:</label>
+            <input type="text" id="sobrenome" name="sobrenome" required>
+        </div>
+        <div style="width: 45%;">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div style="width: 20%;">
+            <label for="dataNascimento">Data de Nascimento:</label>
+            <input type="date" id="dataNascimento" name="dataNascimento">
+        </div>
+        <div style="width: 20%;">
+            <label for="genero">Gênero:</label>
+            <select id="genero" name="genero">
+                <option value="">Escolha uma opção...</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Outro">Outro</option>
+            </select>
+        </div>
+        <div style="display: flex; justify-content: center; width: 100%; margin: 100px 0px;">
+            <button type="submit">Cadastrar</button>
+        </div>
+    </form>
+</body>
+</html>
