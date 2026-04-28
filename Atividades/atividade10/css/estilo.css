@@ -1,0 +1,74 @@
+* {
+    margin: 0px auto;
+}
+
+.container {
+    margin: 5%;
+}
+
+@font-face {
+    font-family: Lobster;
+    src: url(../fonts/Lobster1.4.otf);
+}
+
+header, .youcast-now, nav {
+    height: 60px;
+}
+
+.youcast-now, nav, .nome-logo {
+    float: left;
+}
+
+header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    width: 100%;
+    color: #fff;
+    border-bottom: 5px solid;
+    border-image-source: linear-gradient(to right, #0f0, #f0f);
+    border-image-slice: 1;
+}
+
+.youcast-now {
+    width: 25%; 
+    background-color: #666; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.now {
+    background-color: #ff00ff;
+    padding: 0px 5px;
+}
+
+h1 {
+    font-family: Lobster;
+    font-size: 55px;
+}
+
+nav {
+    width: 75%;
+    background-color: #000;
+    height: 60px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul li {
+    display: inline;
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+.usuario {
+    width: 36px;
+    margin: -10px;
+}
