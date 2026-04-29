@@ -12,7 +12,7 @@
 }
 
 header, .youcast-now, nav {
-    height: 60px;
+    height: 100px;
 }
 
 .youcast-now, nav, .nome-logo {
@@ -24,7 +24,7 @@ header {
     font-weight: bolder;
     width: 100%;
     color: #fff;
-    border-bottom: 5px solid;
+    border-bottom: 7px solid;
     border-image-source: linear-gradient(to right, #0f0, #f0f);
     border-image-slice: 1;
 }
@@ -40,17 +40,17 @@ header {
 .now {
     background-color: #ff00ff;
     padding: 0px 5px;
+    font-size: 25px;
 }
 
 h1 {
     font-family: Lobster;
-    font-size: 55px;
+    font-size: 90px;
 }
 
 nav {
     width: 75%;
     background-color: #000;
-    height: 60px;
     display: flex;
     justify-content: end;
     align-items: center;
@@ -58,17 +58,43 @@ nav {
 
 ul {
     list-style-type: none;
-    margin: 0px;
     padding: 0px;
+    margin: -10px 0px 0px 0px;
 }
 
 ul li {
     display: inline;
-    margin-right: 15px;
-    font-size: 20px;
+    margin-right: 25px;
+    font-size: 30px;
 }
 
 .usuario {
-    width: 36px;
-    margin: -10px;
+    width: 64px;
+    margin-bottom: -15px;
+}
+
+aside {
+    width: 20%;
+    height: 100vh;
+    background-color: #ccc;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+}
+
+.titulo-secao {
+    background-color: #0a0;
+    color: #fff;
+    padding: 5px;
+    font-size: 40px;
+}
+
+.trending-caster {
+    margin: 20px 0px;
+}
+
+.trending-caster img {
+    float: left;
+    margin-right: 15px;
+    width: 38px;
 }
