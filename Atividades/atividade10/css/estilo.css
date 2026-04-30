@@ -15,7 +15,7 @@ header, .youcast-now, nav {
     height: 100px;
 }
 
-.youcast-now, nav, .nome-logo {
+.youcast-now, nav, .nome-logo, .user-main img {
     float: left;
 }
 
@@ -73,13 +73,17 @@ ul li {
     margin-bottom: -15px;
 }
 
+aside, main {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 aside {
     width: 20%;
     height: 100vh;
     background-color: #ccc;
     float: left;
-    font-family: Arial, Helvetica, sans-serif;
     padding: 20px;
+    margin-right: 100px;
 }
 
 .titulo-secao {
@@ -89,12 +93,35 @@ aside {
     font-size: 40px;
 }
 
-.trending-caster {
+.trending-caster, .just-for-you {
     margin: 20px 0px;
 }
 
-.trending-caster img {
+.trending-caster img, .just-for-you img {
     float: left;
     margin-right: 15px;
+    width: 38px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+article {
+    margin: 0px 10px 10px 10px;
+}
+
+.img-main {
+    width: 250px;
+    height: 300px;
+}
+
+.user-main {
+    margin: 10px 0px;
+}
+
+.user-main img {
+    margin-right: 10px;
     width: 38px;
 }
