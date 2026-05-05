@@ -9,7 +9,7 @@
     <!-- css bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    
+
     <!-- meu css -->
     <link href="css/estilo.css" rel="stylesheet" type="text/css" media="all">
 
@@ -59,6 +59,53 @@
         </div>
     </nav>
     <!-- fim do menu superior -->
+
+    <!-- conteúdo da página -->
+    <main class="mt-5">
+        <div class="container">
+            <h1>Formulário Bootstrap</h1>
+            <hr>
+            <!-- formulário -->
+            <form method="">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                        <label for="nome" class="form-label">Primeiro nome:</label>
+                        <input class="form-control" type="text" placeholder="Informe o primeiro nome" aria-label="nome">
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-8 mb-3">
+                        <label for="sobrenome" class="form-label">Sobrenome:</label>
+                        <input class="form-control" type="text" placeholder="Informe o sobrenome"
+                            aria-label="sobrenome">
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3 mb-3">
+                        <label for="cpf" class="form-label">CPF:</label>
+                        <input class="form-control" type="text" placeholder="xxx.xxx.xxx-xx" aria-label="cpf">
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3 mb-3">
+                        <label for="telefone" class="form-label">Telefone:</label>
+                        <input class="form-control" type="tel" placeholder="(ddd) 9xxxx-xxxx" aria-label="telefone">
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3 mb-3">
+                        <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
+                        <input class="form-control" type="date" aria-label="dataNascimento">
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3 mb-3">
+                        <label for="genero" class="form-label">Gênero:</label>
+                        <select class="form-select" aria-label="genero">
+                            <option selected>Escolha uma opção...</option>
+                            <option value="1">Masculino</option>
+                            <option value="2">Feminino</option>
+                            <option value="3">Outro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-5">
+                    <button type="submit" class="btn btn-success">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <!-- fim do conteúdo da página -->
 
     <!-- js bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
