@@ -23,7 +23,7 @@ public class Cliente {
     private String cpf;
     @Column(nullable = false, unique = true)
     private String email;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 16)
     private String telefone;
     @Column(nullable = false)
     private LocalDate dataNascimento;
