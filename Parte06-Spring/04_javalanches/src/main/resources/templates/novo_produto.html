@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: main-layout(~{::title}, ~{::main})}">
+<head>
+    <title>Javalanches - Cadastrar novo produto</title>
+</head>
+<body>
+    <main>
+        <h1>Cadastro de novo produto</h1>
+        <hr>
+        <form method="POST">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <label for="nomeProduto" class="form-label">Nome do produto:</label>
+                    <input type="text" class="form-control" id="nomeProduto" name="nomeProduto" required>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <label for="categoria" class="form-label">Categoria:</label>
+                    <select class="form-select" id="categoria" name="categoria" required>
+                        <option value="" disabled selected>Selecione uma categoria...</option>
+                        <option th:each="cat:${categorias}" th:value="${cat.codigoCategoria}" th:text="${cat.nomeCategoria}"></option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
