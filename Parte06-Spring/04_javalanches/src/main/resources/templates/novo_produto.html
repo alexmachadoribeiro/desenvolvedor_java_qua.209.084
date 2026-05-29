@@ -9,16 +9,27 @@
         <hr>
         <form method="POST">
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                <div class="col-12 col-lg-4 mb-3">
                     <label for="nomeProduto" class="form-label">Nome do produto:</label>
                     <input type="text" class="form-control" id="nomeProduto" name="nomeProduto" required>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
-                    <label for="categoria" class="form-label">Categoria:</label>
-                    <select class="form-select" id="categoria" name="categoria" required>
+                    <label for="categoriaId" class="form-label">Categoria:</label>
+                    <select class="form-select" id="categoriaId" name="categoriaId" required>
                         <option value="" disabled selected>Selecione uma categoria...</option>
                         <option th:each="cat:${categorias}" th:value="${cat.codigoCategoria}" th:text="${cat.nomeCategoria}"></option>
                     </select>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <label for="precoProduto" class="form-label">Preço do Produto:</label>
+                    <input type="number" placeholder="R$ 0,00" class="form-control" id="precoProduto" name="precoProduto" step="0.01" required>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="descricaoProduto" class="form-label">Descrição do Produto:</label>
+                    <textarea class="form-control" placeholder="Número máximo de caracteres: 255" id="descricaoProduto" name="descricaoProduto" rows="3" maxlength="255"></textarea>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <button type="submit" class="btn btn-primary">Cadastrar produto</button>
                 </div>
             </div>
         </form>

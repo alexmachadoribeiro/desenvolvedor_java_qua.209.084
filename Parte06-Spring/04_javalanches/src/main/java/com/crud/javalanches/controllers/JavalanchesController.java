@@ -5,14 +5,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.crud.javalanches.models.Categoria;
+import com.crud.javalanches.models.Produto;
 import com.crud.javalanches.repository.CategoriaRepository;
+import com.crud.javalanches.repository.ProdutoRepository;
 
 @Controller
 public class JavalanchesController {
     @Autowired
     private CategoriaRepository categoriaRepository;
+    @Autowired
+    private ProdutoRepository produtoRepository;
 
     @GetMapping("/")
     public String index() {
@@ -34,5 +39,13 @@ public class JavalanchesController {
     public String novoProduto(Model model) {
         model.addAttribute("categorias", categoriaRepository.findAll());
         return "novo_produto";
+    }
+
+    @PostMapping("/novoProduto")
+    public String novoProduto(Produto produto, @RequestParam("categoriaId") Long categoriaId) {
+        Categoria categoria = categoriaRepository.findById(categoriaId).orElse(null);
+        produto.setCategoria(categoria);
+        produtoRepository.save(produto);
+        return "produto_sucesso";
     }
 }
