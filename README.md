@@ -14,9 +14,9 @@
             - cliente_sucesso.html
     - Arquivos alterados (confira os comentários TODO e FIXME):
         - controllers
-            - JavalanchesController.java (ver 2 TODO)
+            - JavalanchesController.java (ver 3 TODO e 1 REVIEW)
         - models
-            - Cliente.java (ver 1 FIXME)
+            - Cliente.java (ver 1 FIXME e 1 REVIEW)
         - fragments
             - header.html (ver 1 TODO)
         - templates

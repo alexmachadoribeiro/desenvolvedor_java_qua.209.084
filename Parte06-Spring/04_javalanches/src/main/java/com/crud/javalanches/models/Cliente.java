@@ -1,5 +1,6 @@
 package com.crud.javalanches.models;
 
+// REVIEW: revisar os imports
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class Cliente {
 
     // FIXME: completar a linha abaixo @ManyToMany para criar a relação entre Cliente e Endereco
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    
+
     @JoinTable(name = "cliente_endereco", joinColumns = @JoinColumn(name = "cliente_id"), inverseJoinColumns = @JoinColumn(name = "endereco_id"))
     private List<Endereco> enderecos = new ArrayList<>();
 

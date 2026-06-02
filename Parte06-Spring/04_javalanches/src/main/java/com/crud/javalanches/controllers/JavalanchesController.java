@@ -1,5 +1,6 @@
 package com.crud.javalanches.controllers;
 
+// REVIEW: revisar os imports e remover os que não estão sendo usados
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,8 @@ public class JavalanchesController {
     private CategoriaRepository categoriaRepository;
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    // TODO: adicionar as injeções de dependência para ClienteRepository e EnderecoRepository
     @Autowired
     private ClienteRepository clienteRepository;
     @Autowired
