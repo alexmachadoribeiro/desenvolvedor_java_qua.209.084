@@ -5,11 +5,80 @@
 </head>
 <body>
     <main>
-        <h1>Cadastrar novo cliente</h1>
-        <hr>
-        <!-- TODO: crie um formulário de cadastro de clientes. -->
-        <!-- NOTE: inclua os campos do endereço no mesmo formulário -->
-        <!-- NOTE: ao terminar, faça as interfaces do cliente e do endereço -->
+        <!-- TODO: implementar o formulário de cadastro de cliente -->
+        <h1 class="mb-5">Cadastrar novo cliente</h1>
+        <form method="POST">
+            <div class="row">
+                <h2 class="mt-5">Dados pessoais</h2>
+                <hr>
+                <!-- nome -->
+                <div class="col-12 col-lg-6">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" id="nome" name="nome" class="form-control" required>
+                </div>
+                <!-- email -->
+                <div class="col-12 col-md-9 col-lg-6 mb-3">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <!-- telefone -->
+                <div class="col-12 col-md-3 col-lg-4 mb-3">
+                    <label for="telefone" class="form-label">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" class="form-control" required>
+                </div>
+                <!-- cpf -->
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <label for="cpf" class="form-label">CPF</label>
+                    <input type="text" id="cpf" name="cpf" class="form-control" required>
+                </div>
+                <!-- data de nascimento -->
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+                    <input type="date" id="dataNascimento" name="dataNascimento" class="form-control" required>
+                </div>
+                <h2 class="mt-5">Endereço</h2>
+                <hr>
+                <!-- cep -->
+                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                    <label for="cep" class="form-label">CEP</label>
+                    <input type="text" id="cep" name="cep" class="form-control" required>
+                </div>
+                <!-- uf -->
+                <div class="col-12 col-md-3 col-lg-2 mb-3">
+                    <label for="uf" class="form-label">UF</label>
+                    <input type="text" id="uf" name="uf" class="form-control" required>
+                </div>
+                <!-- cidade -->
+                <div class="col-12 col-md-5 col-lg-7 mb-3">
+                    <label for="cidade" class="form-label">Cidade</label>
+                    <input type="text" id="cidade" name="cidade" class="form-control" required>
+                </div>
+                <!-- bairro -->
+                <div class="col-12 col-md-4 col-lg-5 mb-3">
+                    <label for="bairro" class="form-label">Bairro</label>
+                    <input type="text" id="bairro" name="bairro" class="form-control" required>
+                </div>
+                <!-- logradouro -->
+                <div class="col-12 col-md-4 col-lg-5 mb-3">
+                    <label for="logradouro" class="form-label">Logradouro</label>
+                    <input type="text" id="logradouro" name="logradouro" class="form-control" required>
+                </div>
+                <!-- número -->
+                <div class="col-12 col-md-4 col-lg-2 mb-3">
+                    <label for="numero" class="form-label">Número</label>
+                    <input type="text" id="numero" name="numero" class="form-control" required>
+                </div>
+                <!-- complemento -->
+                <div class="col-12 mb-3">
+                    <label for="complemento" class="form-label">Complemento</label>
+                    <input type="text" id="complemento" name="complemento" class="form-control">
+                </div>
+                <!-- botão -->
+                <div class="d-flex justify-content-start mt-5 mb-5">
+                    <button type="submit" class="btn btn-primary">Cadastrar usuário</button>
+                </div>
+            </div>
+        </form>
     </main>
 </body>
 </html>
