@@ -8,7 +8,6 @@
 
 <body>
     <main>
-        <!-- TODO: implementar a listagem de clientes -->
         <div class="row">
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -62,14 +61,16 @@
                     <nav class="mt-4" aria-label="Paginação de clientes">
                         <ul class="pagination justify-content-center mb-0">
                             <li class="page-item" th:classappend="${clientes.first} ? 'disabled'">
-                                <a class="page-link" th:href="@{/listarClientes(pagina=${paginaAtual - 1})}">Anterior</a>
+                                <a class="page-link"
+                                    th:href="${clientes.first} ? @{/listarClientes(pagina=${paginaAtual})} : @{/listarClientes(pagina=${paginaAtual - 1})}">Anterior</a>
                             </li>
                             <li class="page-item disabled">
                                 <span class="page-link"
                                     th:text="${'Página ' + (paginaAtual + 1) + ' de ' + clientes.totalPages}">Página 1 de 1</span>
                             </li>
                             <li class="page-item" th:classappend="${clientes.last} ? 'disabled'">
-                                <a class="page-link" th:href="@{/listarClientes(pagina=${paginaAtual + 1})}">Próxima</a>
+                                <a class="page-link"
+                                    th:href="${clientes.last} ? @{/listarClientes(pagina=${paginaAtual})} : @{/listarClientes(pagina=${paginaAtual + 1})}">Próxima</a>
                             </li>
                         </ul>
                     </nav>
