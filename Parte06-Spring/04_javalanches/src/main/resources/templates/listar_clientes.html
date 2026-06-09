@@ -1,11 +1,82 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: main-layout(~{::title}, ~{::main})}">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{fragments/layout :: main-layout(~{::title}, ~{::main})}">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Javalanches - Clientes</title>
 </head>
+
 <body>
-    <!-- TODO: crie a página listar clientes utilizando Accordion -->
+    <main>
+        <!-- TODO: implementar a listagem de clientes -->
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h1 class="mb-0">Clientes cadastrados</h1>
+                    <span class="text-muted" th:text="${clientes.totalElements} + ' cliente(s) encontrado(s)'">0 cliente(s) encontrado(s)</span>
+                </div>
+
+                <div th:if="${clientes.empty}" class="alert alert-warning">
+                    Nenhum cliente cadastrado.
+                </div>
+
+                <div th:unless="${clientes.empty}">
+                    <div class="accordion" id="accordionClientes">
+                        <div class="accordion-item" th:each="cliente, status : ${clientes}">
+                            <h2 class="accordion-header" th:attr="id=${'heading-' + cliente.codigoCliente}">
+                                <button class="accordion-button" th:classappend="${status.index == 0} ? '' : ' collapsed'" type="button"
+                                    data-bs-toggle="collapse"
+                                    th:attr="data-bs-target=${'#collapse-' + cliente.codigoCliente}, aria-expanded=${status.index == 0}, aria-controls=${'collapse-' + cliente.codigoCliente}">
+                                    <span th:text="${cliente.codigoCliente}"></span>
+                                    <span class="mx-2">-</span>
+                                    <span th:text="${cliente.nome}"></span>
+                                </button>
+                            </h2>
+                            <div th:attr="id=${'collapse-' + cliente.codigoCliente}"
+                                th:class="${status.index == 0} ? 'accordion-collapse collapse show' : 'accordion-collapse collapse'"
+                                data-bs-parent="#accordionClientes">
+                                <div class="accordion-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <strong>CPF:</strong>
+                                            <span th:text="${cliente.cpf}"></span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <strong>Email:</strong>
+                                            <span th:text="${cliente.email}"></span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <strong>Telefone:</strong>
+                                            <span th:text="${cliente.telefone}"></span>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <strong>Data de nascimento:</strong>
+                                            <span th:text="${cliente.dataNascimento}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <nav class="mt-4" aria-label="Paginação de clientes">
+                        <ul class="pagination justify-content-center mb-0">
+                            <li class="page-item" th:classappend="${clientes.first} ? 'disabled'">
+                                <a class="page-link" th:href="@{/listarClientes(pagina=${paginaAtual - 1})}">Anterior</a>
+                            </li>
+                            <li class="page-item disabled">
+                                <span class="page-link"
+                                    th:text="${'Página ' + (paginaAtual + 1) + ' de ' + clientes.totalPages}">Página 1 de 1</span>
+                            </li>
+                            <li class="page-item" th:classappend="${clientes.last} ? 'disabled'">
+                                <a class="page-link" th:href="@{/listarClientes(pagina=${paginaAtual + 1})}">Próxima</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>
