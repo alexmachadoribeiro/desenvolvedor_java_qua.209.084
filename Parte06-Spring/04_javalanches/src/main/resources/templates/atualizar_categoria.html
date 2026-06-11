@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: main-layout(~{::title}, ~{::main})}">
+<head>
+    <title>Javalanches - Atualizar categoria</title>
+</head>
+<body>
+    <main>
+        <h1>Atualizar categoria</h1>
+        <hr>
+        <form method="POST" th:action="@{/atualizarCategoria}">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <input type="hidden" name="codigoCategoria" th:value="${categoria.codigoCategoria}">
+                    <label for="nomeCategoria" class="form-label">Categoria:</label>
+                    <input type="text" class="form-control" placeholder="Informe a categoria do produto" id="nomeCategoria" name="nomeCategoria" th:value="${categoria.nomeCategoria}" required>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <button type="submit" class="btn btn-success">Atualizar categoria</button>
+                </div>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

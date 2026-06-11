@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: main-layout(~{::title}, ~{::main})}">
+<head>
+    <title>Categoria atualizada com sucesso</title>
+</head>
+<body>
+    <main>
+        <script>
+            alert("Categoria atualizada com sucesso!");
+            window.location.href = "/listarProdutos";
+        </script>
+    </main>
+</body>
+</html>

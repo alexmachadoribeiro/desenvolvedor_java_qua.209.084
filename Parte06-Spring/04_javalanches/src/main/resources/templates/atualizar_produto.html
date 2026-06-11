@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: main-layout(~{::title}, ~{::main})}">
+<head>
+    <title>Javalanches - Atualizar produto</title>
+</head>
+<body>
+    <main>
+        <h1>Atualizar produto</h1>
+        <hr>
+        <form method="POST" th:action="@{/atualizarProduto}">
+            <div class="row">
+                <input type="hidden" name="codigoProduto" th:value="@{produto.codigoProduto}">
+                <div class="col-12 col-lg-4 mb-3">
+                    <label for="nomeProduto" class="form-label">Nome do produto:</label>
+                    <input type="text" class="form-control" id="nomeProduto" name="nomeProduto" th:value="${produto.nomeProduto}" required>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <label for="categoriaId" class="form-label">Categoria:</label>
+                    <select class="form-select" id="categoriaId" name="categoriaId" required>
+                        <option value="" disabled th:selected="${produto.categoria == null}">Selecione uma categoria...</option>
+                        <option th:each="cat:${categorias}" th:value="${cat.codigoCategoria}" th:text="${cat.nomeCategoria}" th:selected="${produto.categoria != null and produto.codigoCategoria == cat.codigoCategoria}"></option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <label for="precoProduto" class="form-label">Preço do Produto:</label>
+                    <input type="number" placeholder="R$ 0,00" class="form-control" id="precoProduto" name="precoProduto" step="0.01" th:value="${produto.precoProduto}" required>
+                </div>
+                <div class="col-12 mb-3">
+                    <label for="descricaoProduto" class="form-label">Descrição do Produto:</label>
+                    <textarea class="form-control" placeholder="Número máximo de caracteres: 255" id="descricaoProduto" name="descricaoProduto" rows="3" maxlength="255" th:text="${produto.descricaoProduto}"></textarea>
+                </div>
+                <div class="d-flex justify-content-start">
+                    <button type="submit" class="btn btn-success">Atualizar produto</button>
+                </div>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
