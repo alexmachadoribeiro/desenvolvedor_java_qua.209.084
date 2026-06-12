@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{fragments/layout :: main-layout(~{::title}, ~{::main})}">
+
+<head>
+    <title>Javalanches - Atualizar endereço</title>
+</head>
+
+<body>
+    <main>
+        <h1 class="mb-5">Atualizar endereço</h1>
+        <form method="POST" th:action="@{/atualizarEndereco}">
+            <div class="row">
+                <h2 class="mt-5">Atualizar endereço do <span th:text="${cliente.nome}"></span></h2>
+                <hr>
+                <input type="hidden" name="codigoEndereco" th:value="${endereco.codigoEndereco}">
+                <!-- cep -->
+                <div class="col-12 col-md-4 col-lg-3 mb-3">
+                    <label for="cep" class="form-label">CEP</label>
+                    <input type="text" id="cep" name="cep" class="form-control" th:value="${endereco.cep}" required>
+                </div>
+                <!-- uf -->
+                <div class="col-12 col-md-3 col-lg-2 mb-3">
+                    <label for="uf" class="form-label">UF</label>
+                    <input type="text" id="uf" name="uf" class="form-control" th:value="${endereco.uf}" required>
+                </div>
+                <!-- cidade -->
+                <div class="col-12 col-md-5 col-lg-7 mb-3">
+                    <label for="cidade" class="form-label">Cidade</label>
+                    <input type="text" id="cidade" name="cidade" class="form-control" th:value="${endereco.cidade}" required>
+                </div>
+                <!-- bairro -->
+                <div class="col-12 col-md-4 col-lg-5 mb-3">
+                    <label for="bairro" class="form-label">Bairro</label>
+                    <input type="text" id="bairro" name="bairro" class="form-control" th:value="${endereco.bairro}" required>
+                </div>
+                <!-- logradouro -->
+                <div class="col-12 col-md-4 col-lg-5 mb-3">
+                    <label for="logradouro" class="form-label">Logradouro</label>
+                    <input type="text" id="logradouro" name="logradouro" class="form-control" th:value="${endereco.logradouro}" required>
+                </div>
+                <!-- número -->
+                <div class="col-12 col-md-4 col-lg-2 mb-3">
+                    <label for="numero" class="form-label">Número</label>
+                    <input type="text" id="numero" name="numero" class="form-control" th:value="${endereco.numero}" required>
+                </div>
+                <!-- complemento -->
+                <div class="col-12 mb-3">
+                    <label for="complemento" class="form-label">Complemento</label>
+                    <input type="text" id="complemento" name="complemento" class="form-control" th:value="${endereco.complemento}">
+                </div>
+                <!-- botão -->
+                <div class="d-flex justify-content-start mt-5 mb-5">
+                    <button type="submit" class="btn btn-primary">Atualizar endereço</button>
+                </div>
+            </div>
+        </form>
+
+        <script>
+            const cep = document.querySelector('#cep');
+
+            // consumo da api
+            const limparFormularioCep = () => {
+                document.querySelector('#uf').value = ('');
+                document.querySelector('#cidade').value = ('');
+                document.querySelector('#bairro').value = ('');
+                document.querySelector('#logradouro').value = ('');
+                document.querySelector('#complemento').value = ('');
+            }
+
+            const meuCallback = (conteudo) => {
+                if (!("erro" in conteudo)) {
+                    document.querySelector('#uf').value = (conteudo.uf);
+                    document.querySelector('#cidade').value = (conteudo.localidade);
+                    document.querySelector('#bairro').value = (conteudo.bairro);
+                    document.querySelector('#logradouro').value = (conteudo.logradouro);
+                    document.querySelector('#complemento').value = (conteudo.complemento);
+                }
+                else {
+                    limparFormularioCep();
+                    alert("CEP não encontrado.");
+                }
+            }
+
+            cep.addEventListener('input', function() {
+                this.value = this.value
+                    .replace(/\D/g, '')
+                    .replace(/(\d{5})(\d)/, '$1-$2')
+                    .replace(/(-\d{3})\d+?$/, '$1');
+            });
+
+            cep.addEventListener('blur', function () {
+                let cep = document.querySelector('#cep').value.replace(/\D/g, '');
+
+                if (cep != '') {
+                    let validaCep = /^[0-9]{8}$/;
+
+                    if (validaCep.test(cep)) {
+                        document.querySelector('#uf').value = "buscando...";
+                        document.querySelector('#cidade').value = "buscando...";
+                        document.querySelector('#bairro').value = "buscando...";
+                        document.querySelector('#logradouro').value = "buscando...";
+                        document.querySelector('#complemento').value = "buscando...";
+
+                        let script = document.createElement('script');
+
+                        script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meuCallback';
+
+                        document.body.appendChild(script);
+                    }
+                    else {
+                        limparFormularioCep();
+                        alert("Formato do CEP inválido.");
+                    }
+                }
+                else {
+                    limparFormularioCep();
+                }
+            });
+        </script>
+    </main>
+</body>
+
+</html>

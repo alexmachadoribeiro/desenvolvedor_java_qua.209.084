@@ -95,6 +95,71 @@ public class JavalanchesController {
         return "cliente_sucesso";
     }
 
+    @GetMapping("/atualizarCliente")
+    public String atualizarCliente(@RequestParam("codigoCliente") Long codigoCliente, Model model) {
+        Cliente cliente = clienteRepository.findById(codigoCliente).orElse(null);
+        if (cliente == null) {
+            return "redirect:/listarClientes";
+        }
+        model.addAttribute("cliente", cliente);
+        return "atualizar_cliente";
+    }
+
+    @PostMapping("/atualizarCliente")
+    public String atualizarCliente(Cliente cliente) {
+        clienteRepository.save(cliente);
+        return "redirect:/listarClientes";
+    }
+
+    @GetMapping("/atualizarEndereco")
+    public String atualizarEndereco(@RequestParam("codigoEndereco") Long codigoEndereco,
+            @RequestParam("codigoCliente") Long codigoCliente, Model model) {
+        Endereco endereco = enderecoRepository.findById(codigoEndereco).orElse(null);
+        Cliente cliente = clienteRepository.findById(codigoCliente).orElse(null);
+
+        if (endereco == null || cliente == null) {
+            return "redirect:/listarClientes";
+        }
+
+        model.addAttribute("endereco", endereco);
+        model.addAttribute("cliente", cliente);
+        return "atualizar_endereco";
+    }
+
+    @PostMapping("/atualizarEndereco")
+    public String atualizarEndereco(Endereco endereco) {
+        enderecoRepository.save(endereco);
+        return "redirect:/listarClientes";
+    }
+
+    @GetMapping("/novoEndereco")
+    public String novoEndereco(@RequestParam("codigoCliente") Long codigoCliente, Model model) {
+        Cliente cliente = clienteRepository.findById(codigoCliente).orElse(null);
+
+        if (cliente == null) {
+            return "redirect:/listarClientes";
+        }
+
+        model.addAttribute("cliente", cliente);
+        return "novo_endereco";
+    }
+
+    @PostMapping("/novoEndereco")
+    public String novoEndereco(Endereco endereco, @RequestParam("codigoCliente") Long codigoCliente) {
+        Cliente cliente = clienteRepository.findById(codigoCliente).orElse(null);
+
+        if (cliente == null) {
+            return "redirect:/listarClientes";
+        }
+
+        cliente.getEnderecos().add(endereco);
+        endereco.getClientes().add(cliente);
+
+        enderecoRepository.save(endereco);
+        clienteRepository.save(cliente);
+        return "redirect:/listarClientes";
+    }
+
     @GetMapping("/atualizarCategoria")
     public String atualizarCategoria(@RequestParam("codigoCategoria") Long codigoCategoria, Model model) {
         Categoria categoria = categoriaRepository.findById(codigoCategoria).orElse(null);
