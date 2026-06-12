@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: main-layout(~{::title}, ~{::main})}">
+<head>
+    <title>Endereço atualizado com sucesso</title>
+</head>
+<body>
+    <main>
+        <script>
+            alert("Endereço atualizado com sucesso!");
+            window.location.href = "/listarClientes";
+        </script>
+    </main>
+</body>
+</html>

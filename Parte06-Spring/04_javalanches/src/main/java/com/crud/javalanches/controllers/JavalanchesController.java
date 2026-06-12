@@ -7,12 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.crud.javalanches.models.Categoria;
 import com.crud.javalanches.models.Endereco;
@@ -108,7 +105,7 @@ public class JavalanchesController {
     @PostMapping("/atualizarCliente")
     public String atualizarCliente(Cliente cliente) {
         clienteRepository.save(cliente);
-        return "redirect:/listarClientes";
+        return "atualizar_cliente_sucesso";
     }
 
     @GetMapping("/atualizarEndereco")
@@ -129,7 +126,7 @@ public class JavalanchesController {
     @PostMapping("/atualizarEndereco")
     public String atualizarEndereco(Endereco endereco) {
         enderecoRepository.save(endereco);
-        return "redirect:/listarClientes";
+        return "atualizar_endereco_sucesso";
     }
 
     @GetMapping("/novoEndereco")
@@ -157,7 +154,7 @@ public class JavalanchesController {
 
         enderecoRepository.save(endereco);
         clienteRepository.save(cliente);
-        return "redirect:/listarClientes";
+        return "endereco_sucesso";
     }
 
     @GetMapping("/atualizarCategoria")
