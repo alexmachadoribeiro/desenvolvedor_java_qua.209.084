@@ -9,7 +9,7 @@
         <hr>
         <form method="POST" th:action="@{/atualizarProduto}">
             <div class="row">
-                <input type="hidden" name="codigoProduto" th:value="@{produto.codigoProduto}">
+                <input type="hidden" name="codigoProduto" th:value="${produto.codigoProduto}">
                 <div class="col-12 col-lg-4 mb-3">
                     <label for="nomeProduto" class="form-label">Nome do produto:</label>
                     <input type="text" class="form-control" id="nomeProduto" name="nomeProduto" th:value="${produto.nomeProduto}" required>
@@ -18,7 +18,7 @@
                     <label for="categoriaId" class="form-label">Categoria:</label>
                     <select class="form-select" id="categoriaId" name="categoriaId" required>
                         <option value="" disabled th:selected="${produto.categoria == null}">Selecione uma categoria...</option>
-                        <option th:each="cat:${categorias}" th:value="${cat.codigoCategoria}" th:text="${cat.nomeCategoria}" th:selected="${produto.categoria != null and produto.codigoCategoria == cat.codigoCategoria}"></option>
+                        <option th:each="cat:${categorias}" th:value="${cat.codigoCategoria}" th:text="${cat.nomeCategoria}" th:selected="${produto.categoria != null and produto.categoria.codigoCategoria == cat.codigoCategoria}"></option>
                     </select>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
