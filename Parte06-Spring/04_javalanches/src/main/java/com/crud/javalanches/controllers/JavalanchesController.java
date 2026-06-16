@@ -5,6 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -155,6 +159,56 @@ public class JavalanchesController {
         enderecoRepository.save(endereco);
         clienteRepository.save(cliente);
         return "endereco_sucesso";
+    }
+
+    @Transactional
+    @GetMapping("/deletarEndereco")
+    public String deletarEndereco(@RequestParam("codigoEndereco") Long codigoEndereco,
+            @RequestParam("codigoCliente") Long codigoCliente) {
+        Cliente cliente = clienteRepository.findById(codigoCliente).orElse(null);
+        Endereco endereco = enderecoRepository.findById(codigoEndereco).orElse(null);
+
+        if (cliente == null || endereco == null) {
+            return "redirect:/listarClientes";
+        }
+
+        cliente.getEnderecos().remove(endereco);
+        endereco.getClientes().remove(cliente);
+        clienteRepository.save(cliente);
+
+        if (endereco.getClientes().isEmpty()) {
+            enderecoRepository.delete(endereco);
+        } else {
+            enderecoRepository.save(endereco);
+        }
+
+        return "redirect:/listarClientes";
+    }
+
+    @Transactional
+    @GetMapping("/deletarCliente")
+    public String deletarCliente(@RequestParam("codigoCliente") Long codigoCliente) {
+        Cliente cliente = clienteRepository.findById(codigoCliente).orElse(null);
+        if (cliente == null) {
+            return "redirect:/listarClientes";
+        }
+
+        List<Endereco> enderecos = new ArrayList<>(cliente.getEnderecos());
+
+        cliente.getEnderecos().clear();
+        clienteRepository.save(cliente);
+        clienteRepository.delete(cliente);
+
+        for (Endereco endereco : enderecos) {
+            endereco.getClientes().remove(cliente);
+            if (endereco.getClientes().isEmpty()) {
+                enderecoRepository.delete(endereco);
+            } else {
+                enderecoRepository.save(endereco);
+            }
+        }
+
+        return "redirect:/listarClientes";
     }
 
     @GetMapping("/atualizarCategoria")

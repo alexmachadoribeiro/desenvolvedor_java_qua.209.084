@@ -9,18 +9,11 @@
 <body>
     <main>
         <h1 class="mb-5">Cadastrar novo endereço</h1>
-<<<<<<< HEAD
-        <form method="POST">
-            <div class="row">
-                <h2 class="mt-5">Endereço</h2>
-                <hr>
-=======
         <form method="POST" th:action="@{/novoEndereco}">
             <div class="row">
                 <h2 class="mt-5">Novo endereço do <span th:text="${cliente.nome}"></span></h2>
                 <hr>
                 <input type="hidden" name="codigoCliente" th:value="${cliente.codigoCliente}">
->>>>>>> d2451fb0af3055527e0c33733fd96fe71fe9f7fb
                 <!-- cep -->
                 <div class="col-12 col-md-4 col-lg-3 mb-3">
                     <label for="cep" class="form-label">CEP</label>
@@ -64,34 +57,8 @@
         </form>
 
         <script>
-<<<<<<< HEAD
-            const form = document.querySelector('form');
-            const maskCpf = document.querySelector('#cpf');
-            const maskTel = document.querySelector('#telefone');
             const cep = document.querySelector('#cep');
 
-            // máscaras de entrada
-            maskCpf.addEventListener('input', function () {
-                this.value = this.value
-                    .replace(/\D/g, '')
-                    .replace(/(\d{3})(\d)/, '$1.$2')
-                    .replace(/(\d{3})(\d)/, '$1.$2')
-                    .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-            });
-
-            maskTel.addEventListener('input', function () {
-                this.value = this.value
-                    .replace(/\D/g, '')
-                    .replace(/(\d{2})(\d)/, '($1) $2')
-                    .replace(/(\d{4,5})(\d)/, '$1-$2')
-                    .replace(/(\d{4})\d+?$/, '$1');
-            });
-
-=======
-            const cep = document.querySelector('#cep');
-
->>>>>>> d2451fb0af3055527e0c33733fd96fe71fe9f7fb
-            // consumo da api
             const limparFormularioCep = () => {
                 document.querySelector('#uf').value = ('');
                 document.querySelector('#cidade').value = ('');
@@ -101,20 +68,19 @@
             }
 
             const meuCallback = (conteudo) => {
-                if (!("erro" in conteudo)) {
-                    document.querySelector('#uf').value = (conteudo.uf);
-                    document.querySelector('#cidade').value = (conteudo.localidade);
-                    document.querySelector('#bairro').value = (conteudo.bairro);
-                    document.querySelector('#logradouro').value = (conteudo.logradouro);
-                    document.querySelector('#complemento').value = (conteudo.complemento);
-                }
-                else {
+                if (!('erro' in conteudo)) {
+                    document.querySelector('#uf').value = conteudo.uf;
+                    document.querySelector('#cidade').value = conteudo.localidade;
+                    document.querySelector('#bairro').value = conteudo.bairro;
+                    document.querySelector('#logradouro').value = conteudo.logradouro;
+                    document.querySelector('#complemento').value = conteudo.complemento;
+                } else {
                     limparFormularioCep();
-                    alert("CEP não encontrado.");
+                    alert('CEP não encontrado.');
                 }
             }
 
-            cep.addEventListener('input', function() {
+            cep.addEventListener('input', function () {
                 this.value = this.value
                     .replace(/\D/g, '')
                     .replace(/(\d{5})(\d)/, '$1-$2')
@@ -124,28 +90,24 @@
             cep.addEventListener('blur', function () {
                 let cep = document.querySelector('#cep').value.replace(/\D/g, '');
 
-                if (cep != '') {
+                if (cep !== '') {
                     let validaCep = /^[0-9]{8}$/;
 
                     if (validaCep.test(cep)) {
-                        document.querySelector('#uf').value = "buscando...";
-                        document.querySelector('#cidade').value = "buscando...";
-                        document.querySelector('#bairro').value = "buscando...";
-                        document.querySelector('#logradouro').value = "buscando...";
-                        document.querySelector('#complemento').value = "buscando...";
+                        document.querySelector('#uf').value = 'buscando...';
+                        document.querySelector('#cidade').value = 'buscando...';
+                        document.querySelector('#bairro').value = 'buscando...';
+                        document.querySelector('#logradouro').value = 'buscando...';
+                        document.querySelector('#complemento').value = 'buscando...';
 
                         let script = document.createElement('script');
-
                         script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meuCallback';
-
                         document.body.appendChild(script);
-                    }
-                    else {
+                    } else {
                         limparFormularioCep();
-                        alert("Formato do CEP inválido.");
+                        alert('Formato do CEP inválido.');
                     }
-                }
-                else {
+                } else {
                     limparFormularioCep();
                 }
             });

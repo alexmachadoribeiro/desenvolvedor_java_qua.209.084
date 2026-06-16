@@ -38,6 +38,9 @@
                                     <div class="mb-3 text-end">
                                         <a class="btn btn-sm btn-outline-primary"
                                             th:href="@{/atualizarCliente(codigoCliente=${cliente.codigoCliente})}">Editar</a>
+                                        <a class="btn btn-sm btn-outline-danger"
+                                            th:href="@{/deletarCliente(codigoCliente=${cliente.codigoCliente})}"
+                                            onclick="return confirm('Tem certeza que deseja excluir este cliente e todos os seus endereços?');">Excluir cliente</a>
                                     </div>
                                     <div class="row g-3">
                                         <div class="col-md-6">
@@ -57,12 +60,6 @@
                                             <span th:text="${cliente.dataNascimento}"></span>
                                         </div>
                                     </div>
-<<<<<<< HEAD
-                                    <div class="mt-4">
-                                        <h3 class="h6 mb-3">Endereços</h3>
-                                        <div class="mb-3">
-                                            <!-- TODO: botão novo endereço -->
-=======
 
                                     <div class="mt-4">
                                         <h3 class="h6 mb-3">Endereços</h3>
@@ -90,12 +87,16 @@
                                                             <div><strong>Número:</strong> <span th:text="${endereco.numero}"></span></div>
                                                             <div><strong>Complemento:</strong> <span th:text="${endereco.complemento}"></span></div>
                                                         </div>
-                                                        <a class="btn btn-sm btn-outline-primary flex-shrink-0"
-                                                            th:href="@{/atualizarEndereco(codigoEndereco=${endereco.codigoEndereco},codigoCliente=${cliente.codigoCliente})}">Editar endereço</a>
+                                                        <div class="d-flex flex-column flex-sm-row gap-2 align-items-start">
+                                                            <a class="btn btn-sm btn-outline-primary"
+                                                                th:href="@{/atualizarEndereco(codigoEndereco=${endereco.codigoEndereco},codigoCliente=${cliente.codigoCliente})}">Editar endereço</a>
+                                                            <a class="btn btn-sm btn-outline-danger"
+                                                                th:href="@{/deletarEndereco(codigoEndereco=${endereco.codigoEndereco},codigoCliente=${cliente.codigoCliente})}"
+                                                                onclick="return confirm('Tem certeza que deseja excluir este endereço?');">Excluir endereço</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
->>>>>>> d2451fb0af3055527e0c33733fd96fe71fe9f7fb
                                         </div>
                                     </div>
                                 </div>
