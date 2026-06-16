@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+    th:replace="~{fragments/layout :: main-layout(~{::title}, ~{::main})}">
+
+<head>
+    <title>Javalanches - Alterar dados do cliente</title>
+</head>
+
+<body>
+    <main>
+        <h1 class="mb-5">Alterar dados do cliente</h1>
+        <hr>
+        <form method="POST" th:action="@{/atualizarCliente}">
+            <div class="row">
+                <input type="hidden" name="codigoCliente" th:value="${cliente.codigoCliente}">
+                <!-- nome -->
+                <div class="col-12 col-lg-6">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" id="nome" name="nome" class="form-control" th:value="${cliente.nome}" required>
+                </div>
+                <!-- email -->
+                <div class="col-12 col-md-9 col-lg-6 mb-3">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="email" id="email" name="email" class="form-control" th:value="${cliente.email}" required>
+                </div>
+                <!-- telefone -->
+                <div class="col-12 col-md-3 col-lg-4 mb-3">
+                    <label for="telefone" class="form-label">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" class="form-control" th:value="${cliente.telefone}" required>
+                </div>
+                <!-- cpf -->
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <label for="cpf" class="form-label">CPF</label>
+                    <input type="text" id="cpf" name="cpf" class="form-control" maxlength="14" th:value="${cliente.cpf}" required>
+                </div>
+                <!-- data de nascimento -->
+                <div class="col-12 col-md-6 col-lg-4 mb-3">
+                    <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+                    <input type="date" id="dataNascimento" name="dataNascimento" class="form-control"
+                        th:value="${cliente.dataNascimento}" required>
+                </div>
+                <!-- botão -->
+                <div class="d-flex justify-content-start mt-5 mb-5">
+                    <button type="submit" class="btn btn-primary">Atualizar usuário</button>
+                </div>
+            </div>
+        </form>
+    </main>
+</body>
+
+</html>

@@ -35,6 +35,10 @@
                                 th:class="${status.index == 0} ? 'accordion-collapse collapse show' : 'accordion-collapse collapse'"
                                 data-bs-parent="#accordionClientes">
                                 <div class="accordion-body">
+                                    <div class="mb-3 text-end">
+                                        <a class="btn btn-sm btn-outline-primary"
+                                            th:href="@{/atualizarCliente(codigoCliente=${cliente.codigoCliente})}">Editar</a>
+                                    </div>
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <strong>CPF:</strong>
@@ -53,10 +57,45 @@
                                             <span th:text="${cliente.dataNascimento}"></span>
                                         </div>
                                     </div>
+<<<<<<< HEAD
                                     <div class="mt-4">
                                         <h3 class="h6 mb-3">Endereços</h3>
                                         <div class="mb-3">
                                             <!-- TODO: botão novo endereço -->
+=======
+
+                                    <div class="mt-4">
+                                        <h3 class="h6 mb-3">Endereços</h3>
+
+                                        <div class="mb-3">
+                                            <a class="link-primary"
+                                                th:href="@{/novoEndereco(codigoCliente=${cliente.codigoCliente})}">Novo Endereço</a>
+                                        </div>
+
+                                        <div th:if="${cliente.enderecos == null or #lists.isEmpty(cliente.enderecos)}"
+                                            class="alert alert-secondary mb-0">
+                                            Nenhum endereço cadastrado para este cliente.
+                                        </div>
+
+                                        <div class="row g-3" th:unless="${cliente.enderecos == null or #lists.isEmpty(cliente.enderecos)}">
+                                            <div class="col-12" th:each="endereco : ${cliente.enderecos}">
+                                                <div class="border rounded p-3 bg-light">
+                                                    <div class="d-flex justify-content-between align-items-start gap-3">
+                                                        <div class="flex-grow-1">
+                                                            <div><strong>CEP:</strong> <span th:text="${endereco.cep}"></span></div>
+                                                            <div><strong>UF:</strong> <span th:text="${endereco.uf}"></span></div>
+                                                            <div><strong>Cidade:</strong> <span th:text="${endereco.cidade}"></span></div>
+                                                            <div><strong>Bairro:</strong> <span th:text="${endereco.bairro}"></span></div>
+                                                            <div><strong>Logradouro:</strong> <span th:text="${endereco.logradouro}"></span></div>
+                                                            <div><strong>Número:</strong> <span th:text="${endereco.numero}"></span></div>
+                                                            <div><strong>Complemento:</strong> <span th:text="${endereco.complemento}"></span></div>
+                                                        </div>
+                                                        <a class="btn btn-sm btn-outline-primary flex-shrink-0"
+                                                            th:href="@{/atualizarEndereco(codigoEndereco=${endereco.codigoEndereco},codigoCliente=${cliente.codigoCliente})}">Editar endereço</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+>>>>>>> d2451fb0af3055527e0c33733fd96fe71fe9f7fb
                                         </div>
                                     </div>
                                 </div>
